@@ -2,6 +2,7 @@ buildscript {
     ext.kotlin_version = '1.6.21'
     ext.ktor_version = '1.6.8'
     ext.mockk_version = '1.10.6'
+    //ext.mockk_version = '1.13.8'
 
     repositories {
         mavenCentral()

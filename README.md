@@ -19,6 +19,81 @@ The [pack cli](https://buildpacks.io/docs/tools/pack/) is used to build a [Docke
 
 ## Getting Started
 
+The below steps walk through the environment setup necessary to run the application in both local and production
+environments.
+
+### Install dependencies for Database  
+
+1. Install PostgreSQL.
+
+   ```bash
+   brew install postgresql@13
+   brew services run postgresql@13
+   ```
+
+1. Install Flyway.
+
+   ```bash
+   brew install flyway
+   ```
+
+1. Create a PostgreSQL database.
+
+   ```bash
+   createdb
+   ```
+
+### Set up the AirQuality Databse for test environment
+
+1. Create the _airquality_test_ database.
+
+   ```bash
+   psql -c "create database airquality_test;"
+   psql -c "create user airquality with password 'airquality';"
+   ```
+
+1. Migrate the database with Flyway.
+
+   ```bash
+   FLYWAY_CLEAN_DISABLED=false flyway -user=airquality -password=airquality -url="jdbc:postgresql://localhost:5432/airquality_test" -locations=filesystem:databases/airquality clean migrate
+   ```
+
+### Run tests
+
+Use Gradle to run tests. You'll see a few failures at first.
+
+```bash
+./gradlew clean build
+```
+
+### Set up the AirQuality development environment
+
+1. Create the _airquality_development_ database.
+
+   ```bash
+   psql -c "create database airquality_development;"
+   ```
+
+1. Migrate the database with Flyway.
+
+   ```bash
+   FLYWAY_CLEAN_DISABLED=false flyway -user=airquality -password=airquality -url="jdbc:postgresql://localhost:5432/airquality_development" -locations=filesystem:databases/airquality clean migrate
+   ```
+
+1. Source the `.env` file for local development.
+
+   ```bash
+   source .env
+   ```
+
+1. Populate development data with a city air quality index scenario.
+
+   ```bash
+   psql -f applications/basic-server/src/test/resources/airquality.sql airquality_development
+   ```
+
+
+
 ## Development
 
 1.  Build a Java Archive (jar) file.
@@ -50,6 +125,11 @@ java -jar applications/data-collector-server/build/libs/data-collector-server-1.
 ```bash
 java -jar applications/data-analyzer-server/build/libs/data-analyzer-server-1.0-SNAPSHOT.jar
 ```
+
+### Launch app locally
+
+http://localhost:8881
+
 
 ## Production
 

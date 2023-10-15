@@ -2,4 +2,18 @@ version '1.0-SNAPSHOT'
 
 dependencies {
     implementation project(":components:workflow-support")
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
+    //implementation 'androidx.core:core-ktx:1.6.0'
+//    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+//    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+
+    // Add Gson as a dependency
+    implementation 'com.google.code.gson:gson:2.8.8'
+
+    implementation 'com.zaxxer:HikariCP:3.2.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.10.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.2'
+    implementation 'org.postgresql:postgresql:42.2.10'
 }

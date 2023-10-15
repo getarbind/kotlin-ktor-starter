@@ -1,5 +1,6 @@
 package io.collective.start.collector
 
+import io.collective.database.createDatasource
 import io.collective.workflow.WorkScheduler
 import io.ktor.application.*
 import io.ktor.features.*
@@ -8,9 +9,18 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import org.slf4j.LoggerFactory
 import java.util.*
 
 fun Application.module() {
+    val jdbcUrl = System.getenv("JDBC_DATABASE_URL")
+    val username = System.getenv("JDBC_DATABASE_USERNAME")
+    val password = System.getenv("JDBC_DATABASE_USERNAME")
+
+    val jdbcUrl1="jdbc:postgresql://localhost:5432/airquality_development"
+    val username1="airquality"
+    val password1="airquality"
+
     install(DefaultHeaders)
     install(CallLogging)
     install(Routing) {

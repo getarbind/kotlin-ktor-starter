@@ -7,6 +7,13 @@ mainClassName = "io.collective.start.collector.AppKt"
 dependencies {
     implementation project(":components:data-collector")
     implementation project(":components:workflow-support")
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    implementation 'com.zaxxer:HikariCP:3.2.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.10.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
+    implementation 'org.postgresql:postgresql:42.2.27'
 }
 
 tasks.withType(Copy).all {
