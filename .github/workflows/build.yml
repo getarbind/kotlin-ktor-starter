@@ -33,8 +33,8 @@ jobs:
           psql postgresql://postgres:postgres@localhost:5432/postgres -c "GRANT USAGE, CREATE ON SCHEMA public TO airquality;"
       - name: Migrate database
         run: |
-          wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/9.9.0/flyway-commandline-9.9.0-linux-x64.tar.gz | tar xvz && sudo ln -s `pwd`/flyway-9.9.0/flyway /usr/local/bin
-          /usr/local/bin/flyway -user=airquality -password=airquality -url="jdbc:postgresql://localhost:5432/airquality_test" -locations=filesystem:databases/airquality migrate
+          wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/7.5.4/flyway-commandline-7.5.4-linux-x64.tar.gz | tar xvz && sudo ln -s `pwd`/flyway-7.5.4/flyway /usr/local/bin
+          /usr/local/bin/flyway -user=airquality -password=airquality -url="jdbc:postgresql://localhost:5432/airquality_test" -locations=filesystem:databases/airquality clean migrate
       - name: Build with Gradle
         run: ./gradlew build
         env:
