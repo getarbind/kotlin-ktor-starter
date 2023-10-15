@@ -32,7 +32,7 @@ jobs:
       - name: Migrate database
         run: |
           wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/9.9.0/flyway-commandline-9.9.0-linux-x64.tar.gz | tar xvz && sudo ln -s `pwd`/flyway-9.9.0/flyway /usr/local/bin
-          /usr/local/bin/flyway -user=airquality -password=airquality -url="jdbc:postgresql://localhost:5432/airquality_test" -locations=filesystem:databases/airquality clean migrate
+          /usr/local/bin/flyway -user=airquality -password=airquality -url="jdbc:postgresql://localhost:5432/airquality_test" -locations=filesystem:databases/airquality migrate
       - name: Build with Gradle
         run: ./gradlew build
         env:
