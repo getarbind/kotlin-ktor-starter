@@ -31,7 +31,7 @@ jobs:
           psql postgresql://postgres:postgres@localhost:5432/postgres -c "create user airquality with password 'airquality';"
           psql postgresql://postgres:postgres@localhost:5432/postgres -c "GRANT ALL ON DATABASE airquality_test TO airquality;"
           psql postgresql://postgres:postgres@localhost:5432/postgres -c "GRANT USAGE, CREATE ON SCHEMA public TO airquality;"
-          psql postgresql://postgres:postgres@localhost:5432/postgres -c "GRANT USAGE ON schema public TO super;"
+          psql postgresql://postgres:postgres@localhost:5432/postgres -c "GRANT USAGE ON schema public TO airquality;"
           psql postgresql://postgres:postgres@localhost:5432/postgres -c "GRANT ALL ON schema public TO airquality;"
       - name: Migrate database
         run: |
