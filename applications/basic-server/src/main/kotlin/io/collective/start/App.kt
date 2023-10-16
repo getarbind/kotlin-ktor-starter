@@ -7,6 +7,7 @@ import io.collective.database.createDatasource
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.freemarker.*
+import io.ktor.http.*
 import io.ktor.http.content.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -53,6 +54,9 @@ fun Application.module() {
         templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
     }
     install(Routing) {
+        get("/health-check") {
+            call.respondText("hi!", ContentType.Text.Html)
+        }
         get("/") {
             //call.respond(FreeMarkerContent("index.ftl", mapOf("headers" to headers())))
             call.respond(FreeMarkerContent("index.ftl", mapOf("headers" to allRows)))
